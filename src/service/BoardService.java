@@ -23,8 +23,7 @@ public class BoardService {
 	// 게시판 생성
 	public void createBoard(int id, int catId, int userId, String name, String context, int viewCount, String image) {
 		if (name == null || context == null) {
-			System.out.println("제목과 내용을 입력하세요");
-			return;
+			throw new IllegalArgumentException("제목과 내용을 입력하세요");
 		}
 		Board b = new Board(id, catId, userId, name, context, viewCount, image);
 		boardMap.put(idCount, b);
@@ -42,15 +41,13 @@ public class BoardService {
         HashMap<Integer, Board> pageBoardMap = new HashMap<>();
 
         if (page < 1) {
-            System.out.println("유효한 페이지 번호를 입력하세요");
-            return null;
+        	throw new IllegalArgumentException("유효한 페이지 번호를 입력하세요");
         } else {
             int boardQuantity = allBoardMap.size();
             int pageQuantity = (int) Math.ceil(((double) boardQuantity / ITEM_PER_PAGE));
 
             if (page > pageQuantity) {
-                System.out.println("유효한 페이지 범위를 입력하세요");
-                return null;
+            	throw new IllegalArgumentException("유효한 페이지 번호를 입력하세요");
             }
 
             int start = (page - 1) * ITEM_PER_PAGE;
@@ -94,8 +91,7 @@ public class BoardService {
 			return instance.boardMap.get(id);
 		}
 		else {
-			System.out.println("id에 해당하는 board가 존재하지 않습니다.");
-			return null;
+			throw new IllegalArgumentException("id에 해당하는 board가 존재하지 않습니다.");
 		}
 	}
 	
