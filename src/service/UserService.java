@@ -17,9 +17,8 @@ public class UserService {
 	public static UserService getUserServiceInstance() {
 		return userService;
 	}
-	
 
-	public int createUser(String name, String email, GradeType grade){
+	public int createUser(String name, String email, GradeType grade) throws Exception{
 		/* 
 		 * 같은 이름 , 이메일 의 유저가 있는지 확인 
 		 * 
@@ -27,7 +26,6 @@ public class UserService {
 		 * 새로운 유저라면  User 객체 저장후 저장한 객체 반환
 		 * 
 		 * */
-
 		if(isEnrollableUser(name, email).equals(false))throw new Exception("등록할 수 없는 이름 , 이메일 입니다.");
 		User newUser = new User( name, email, grade);
 		Integer userId = getUserIdCount();
@@ -36,7 +34,7 @@ public class UserService {
 		return userId;
 	}
 	
-	public User getUser(Integer id) {
+	public User getUser(Integer id) throws Exception {
 		User user =  userMap.get(id);
 		
 		// 유저가 존재하는 경우 User를 , 존재하지 않는다면 NUll 반환 
@@ -44,7 +42,7 @@ public class UserService {
 		return user ;
 	}
 	
-	public User updateUserName(int userId, String userName) {
+	public User updateUserName(int userId, String userName) throws Exception {
 		// 유저존재 여부 , 유저 이름 확인 
 
 		if(isValidUser(userId) && isValidName(userName) == false) throw new Exception("userId 혹은 email이 유효하지 않습니다."); 
@@ -54,10 +52,9 @@ public class UserService {
 		user.setName(userName);
 		
 		return user;
-		
 	}
 	
-	public User updateUserEmail(int userId, String userEmail) {
+	public User updateUserEmail(int userId, String userEmail) throws Exception {
 		if(isValidUser(userId) && isValidEmail(userEmail) == false) throw new Exception("userId 혹은 email이 유효하지 않습니다."); 
 		
 		// user 이름 업데이트 
@@ -67,7 +64,7 @@ public class UserService {
 		return user;
 	};
 	
-	public User updateUserGrade(int userId, GradeType grade) {
+	public User updateUserGrade(int userId, GradeType grade) throws Exception {
 		if(isValidUser(userId) == false) throw new Exception("userId가 유효하지 않습니다."); 
 		
 		// user 이름 업데이트 
@@ -77,7 +74,7 @@ public class UserService {
 		return user;
 	}
 	
-	public Boolean deleteUser(int id) {
+	public Boolean deleteUser(int id) throws Exception {
 		if(isValidUser(id) == false) throw new Exception("userId가 유효하지 않습니다."); 
 		
 		userMap.remove(id);
