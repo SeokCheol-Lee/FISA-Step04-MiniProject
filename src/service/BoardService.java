@@ -122,6 +122,13 @@ public class BoardService {
 		boardMap.put(boardId,board);
 	}
 	
+	public void addViewCount(Board board) {
+		int viewCount = board.getViewCount();
+		int boardId = board.getId();
+		board.setViewCount(viewCount + 1);
+		boardMap.put(boardId, board);
+	}
+	
 	public void deleteBoard(int boardId) {
 		Board board = getBoardById(boardId);
 		if(board == null) {
