@@ -14,24 +14,21 @@ public class TestView {
 		service.createCategory("카테고리5");
 		
 		// getCategoryAll()
-		
 		System.out.println(service.getCategoryAll());
 		
-		// getCategoryName() 카테고리 이름으로 찾기
-		System.out.println(service.getCategoryByName("카테고리3"));
-		System.out.println(service.getCategoryByName("카테고리88"));
+		// getCategoryId(int categoryId) 카테고리 아이디으로 찾기
+		System.out.println(service.getCategoryById(1));
 		
-		// updateCategory() 카테고리 이름 변경
-		service.updateCategory("카테고리1", "카테고리77");
+		// createCategory(String categoryName)
+		//service.createCategory("카테고리5");
 		
+		// updateCategory(int categoryId, String categoryName) 카테고리 이름 변경
+		service.updateCategory(4, "카테고리77");
 		System.out.println(service.getCategoryAll());
 		
-		// deleteCategory() 카테고리 삭제
-		service.deleteCategory("카테고리77");
-		
+		// deleteCategory(int categoryId) 카테고리 삭제
+		service.deleteCategory(3);
 		System.out.println(service.getCategoryAll());
-
-
 		
 	}
 	

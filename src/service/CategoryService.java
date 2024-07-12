@@ -43,24 +43,20 @@ public class CategoryService {
 
 	
 	/**
-	 * getCategoryByName(String name); 카테고리 이름으로 가져오기 
+	 * getCategoryById(int id); 카테고리 아이디로 찾기
 	 */
 	
-	public Category getCategoryByName(String name){
-		for(Category category : categoryList.values()) {
-			if(category.getName().equals(name)) {
-				return category;
-			}
-		}
-		return null;
+	public Category getCategoryById(int id){
+		Category category = categoryList.get(id);
+		return category;
 	}
 	
 	/**
-	 * updateCategory(String categoryName); 카테고리 이름 업데이트 
+	 * updateCategory(int id, String categoryName); 카테고리 이름 업데이트 
 	 *
 	 */
-	public void updateCategory(String originalName,String categoryName) {
-		Category category = getCategoryByName(originalName);
+	public void updateCategory(int categoryId,String categoryName) {
+		Category category = getCategoryById(categoryId);
 		if(category!=null) {
 			category.setName(categoryName);
 		}
@@ -70,10 +66,8 @@ public class CategoryService {
 	 * deleteCategory(String categoryName); 카테고리 삭제하기
 	 * 
 	 */
-	public void deleteCategory(String categoryName) {
-		Category category = getCategoryByName(categoryName);
-		if(category!=null) {
-			categoryList.values().remove(category);
-		}
+	
+	public void deleteCategory(int categoryId) {
+		categoryList.remove(categoryId);
 	}
 }
