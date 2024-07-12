@@ -29,7 +29,7 @@ public class UserService {
 		 * 새로운 유저라면  User 객체 저장후 저장한 객체 반환
 		 * 
 		 * */
-		System.out.println(" 등록가능한가? "+isEnrollableUser(name, email));
+
 		if(isEnrollableUser(name, email).equals(false))return Integer.MIN_VALUE;
 		User newUser = new User( name, email, grade);
 		Integer userId = getUserIdCount();
