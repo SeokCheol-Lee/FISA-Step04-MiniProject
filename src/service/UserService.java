@@ -19,8 +19,6 @@ public class UserService {
 	}
 	
 
-
-	
 	public int createUser(String name, String email, GradeType grade){
 		/* 
 		 * 같은 이름 , 이메일 의 유저가 있는지 확인 
