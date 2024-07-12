@@ -70,7 +70,7 @@ public class UserService {
 	};
 	
 	public User updateUserGrade(int userId, GradeType grade) {
-		if(isValidUser(userId) == false) throw new Exception("userId이 유효하지 않습니다."); 
+		if(isValidUser(userId) == false) throw new Exception("userId가 유효하지 않습니다."); 
 		
 		// user 이름 업데이트 
 		User user = userMap.get(userId);
@@ -80,7 +80,7 @@ public class UserService {
 	}
 	
 	public Boolean deleteUser(int id) {
-		if(isValidUser(id) == false) throw new Exception("userId이 유효하지 않습니다."); 
+		if(isValidUser(id) == false) throw new Exception("userId가 유효하지 않습니다."); 
 		
 		userMap.remove(id);
 		
