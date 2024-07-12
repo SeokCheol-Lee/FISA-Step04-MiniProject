@@ -18,38 +18,33 @@ public class UserController {
 	}
 
 	public User getUserInfo(int userId) throws Exception {
-		User user = userService.getUser(userId);
-
-		return user;
+		// userId에 해당하는 유저 정보를 반환합니다. 
+		return userService.getUser(userId);
 	};
 
-	public Integer createUser(String name, String email, GradeType gradeType) throws Exception {
-		Integer id = userService.createUser(name, email, gradeType);
-
-		return id;
+	public int createUser(String name, String email, GradeType gradeType) throws Exception {
+		// 유저아이디를 반환합니다. 
+		return userService.createUser(name, email, gradeType);
 	}
 
 	public User updateUserName(int userId, String name) throws Exception {
-		User updatedUser = userService.updateUserName(userId, name);
+		// 이름이 업데이트된 유저정보를 반환합니다. 
+		return userService.updateUserName(userId, name);
 
-		return updatedUser;
 	}
 
 	public User updateUserEmail(int userId, String email) throws Exception {
-		User updatedUser = userService.updateUserEmail(userId, email);
-
-		return updatedUser;
+		// email이 업데이트된 유저정보를 반환합니다. 
+		return userService.updateUserEmail(userId, email);
 	}
 
 	public User updateUserGrade(int userId, GradeType gradeType) throws Exception {
-		User updatedUser = userService.updateUserGrade(userId, gradeType);
-
-		return updatedUser;
+		// Grade가 업데이트된 유저정보를 반환합니다. 
+		return userService.updateUserGrade(userId, gradeType);
 	}
 
 	public Boolean deleteUser(int userId) throws Exception {
-		Boolean result = userService.deleteUser(userId);
-
-		return result;
+		// User 삭제 성공 여부를 반환합니다. 
+		return  userService.deleteUser(userId);
 	}
 }
