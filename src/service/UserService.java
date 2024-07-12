@@ -30,7 +30,7 @@ public class UserService {
 		 * 
 		 * */
 
-		if(isEnrollableUser(name, email).equals(false))return Integer.MIN_VALUE;
+		if(isEnrollableUser(name, email).equals(false))throw new Exception("등록할 수 없는 이름 , 이메일 입니다.");
 		User newUser = new User( name, email, grade);
 		Integer userId = getUserIdCount();
 		userMap.put(userId , newUser);
@@ -42,13 +42,14 @@ public class UserService {
 		User user =  userMap.get(id);
 		
 		// 유저가 존재하는 경우 User를 , 존재하지 않는다면 NUll 반환 
-		return user == null ? null : user ;
+		if(user == null)throw new Exception("존재 하지 않는 유저입니다. ");
+		return user ;
 	}
 	
 	public User updateUserName(int userId, String userName) {
 		// 유저존재 여부 , 유저 이름 확인 
 
-		if(isValidUser(userId) && isValidName(userName) == false) return null; 
+		if(isValidUser(userId) && isValidName(userName) == false) throw new Exception("userId 혹은 email이 유효하지 않습니다."); 
 		
 		// user 이름 업데이트 
 		User user = userMap.get(userId);
@@ -59,7 +60,7 @@ public class UserService {
 	}
 	
 	public User updateUserEmail(int userId, String userEmail) {
-		if(isValidUser(userId) && isValidEmail(userEmail) == false) return null; 
+		if(isValidUser(userId) && isValidEmail(userEmail) == false) throw new Exception("userId 혹은 email이 유효하지 않습니다."); 
 		
 		// user 이름 업데이트 
 		User user = userMap.get(userId);
@@ -69,7 +70,7 @@ public class UserService {
 	};
 	
 	public User updateUserGrade(int userId, GradeType grade) {
-		if(isValidUser(userId) == false) return null; 
+		if(isValidUser(userId) == false) throw new Exception("userId이 유효하지 않습니다."); 
 		
 		// user 이름 업데이트 
 		User user = userMap.get(userId);
@@ -79,7 +80,7 @@ public class UserService {
 	}
 	
 	public Boolean deleteUser(int id) {
-		if(isValidUser(id) == false) return false;
+		if(isValidUser(id) == false) throw new Exception("userId이 유효하지 않습니다."); 
 		
 		userMap.remove(id);
 		
