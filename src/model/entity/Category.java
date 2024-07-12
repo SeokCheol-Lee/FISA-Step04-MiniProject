@@ -10,6 +10,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Category {
-	private int id;
+	//private int id;
 	private String name;
 }
