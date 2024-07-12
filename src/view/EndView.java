@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.entity.Board;
 import model.entity.Category;
+import model.entity.Comment;
 
 public class EndView {
 
@@ -36,15 +37,28 @@ public class EndView {
 		System.out.println(board);
 	}
 	
-	public static void boardDetailView(Board board) {
+	public static void boardDetailView(Board board, List<Comment> comments, String categoryName) {
 		
 		System.out.println("작성자 : " + board.getUserId());
-		System.out.println("---------------------------");
+		System.out.println("__________________________");
+		System.out.println("카테고리 : "+ categoryName);
+		System.out.println("__________________________");
 		System.out.println("제목 : " + board.getName());
-		System.out.println("---------------------------");		
+		System.out.println("__________________________");		
 		System.out.println("내용 : " + board.getContext());
-		System.out.println("---------------------------");	
+		System.out.println("__________________________");	
 		System.out.println("조회수 : " + board.getViewCount());
+		System.out.println("__________________________");
+		System.out.println("__________________________");
+		System.out.println("댓글 목록");
+		for (int i=0; i<comments.size(); i++) {
+			Comment comment = comments.get(i); 
+			System.out.println("id :" + comment.getUserId());
+			System.out.println("id :" + comment.getContext());
+			System.out.println("__________________________");
+			
+		}
+		
 	}
 	
 }
