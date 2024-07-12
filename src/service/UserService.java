@@ -17,7 +17,6 @@ public class UserService {
 	public static UserService getUserServiceInstance() {
 		return userService;
 	}
-	
 
 	public int createUser(String name, String email, GradeType grade) throws Exception{
 		/* 
@@ -27,7 +26,6 @@ public class UserService {
 		 * 새로운 유저라면  User 객체 저장후 저장한 객체 반환
 		 * 
 		 * */
-
 		if(isEnrollableUser(name, email).equals(false))throw new Exception("등록할 수 없는 이름 , 이메일 입니다.");
 		User newUser = new User( name, email, grade);
 		Integer userId = getUserIdCount();
@@ -54,7 +52,6 @@ public class UserService {
 		user.setName(userName);
 		
 		return user;
-		
 	}
 	
 	public User updateUserEmail(int userId, String userEmail) throws Exception {
