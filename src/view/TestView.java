@@ -1,10 +1,14 @@
 package view;
 
+import org.junit.Test;
+
 import model.entity.Category;
 import service.CategoryService;
 
 public class TestView {
-	public static void main(String[] args) {
+	
+	@Test
+	public void categoryTest() {
 		CategoryService service = CategoryService.getInstance();
 		
 		service.createCategory("카테고리1");
