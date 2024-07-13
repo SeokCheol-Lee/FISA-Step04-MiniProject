@@ -9,7 +9,12 @@ import model.entity.Comment;
 public class CommentService {
 	
 	public static HashMap<Integer,Comment> commentMap = new HashMap<>();
+	private static CommentService instance = new CommentService();
 	public static int count = 0;
+	
+	public static CommentService getInstance() {
+		return instance;
+	}
 	
 	public void createComment(int boardId, int userId, String context) {
 		Comment comment = Comment.builder()

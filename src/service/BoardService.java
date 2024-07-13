@@ -1,12 +1,14 @@
 package service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import model.entity.Board;
+import model.entity.Comment;
 public class BoardService {
 	private final int ITEM_PER_PAGE = 5;
-	
+	private static CommentService commentService = CommentService.getInstance();
 	private static BoardService instance = new BoardService();
 		
 	public static BoardService getInstance() {
@@ -21,11 +23,11 @@ public class BoardService {
 	}
 	
 	// 게시판 생성
-	public void createBoard(int id, int catId, int userId, String name, String context, int viewCount, String image) {
+	public void createBoard(int boardId, int catId, int userId, String name, String context, int viewCount, String image) {
 		if (name == null || context == null) {
 			throw new IllegalArgumentException("제목과 내용을 입력하세요");
 		}
-		Board b = new Board(id, catId, userId, name, context, viewCount, image);
+		Board b = new Board(boardId, catId, userId, name, context, viewCount, image);
 		boardMap.put(idCount, b);
 		idCount ++;
 	}
@@ -122,6 +124,13 @@ public class BoardService {
 		boardMap.put(boardId,board);
 	}
 	
+	public void addViewCount(Board board) {
+		int viewCount = board.getViewCount();
+		int boardId = board.getBoardId();
+		board.setViewCount(viewCount + 1);
+		boardMap.put(boardId, board);
+	}
+	
 	public void deleteBoard(int boardId) {
 		Board board = getBoardById(boardId);
 		if(board == null) {
@@ -130,6 +139,20 @@ public class BoardService {
 		board = null;
 		boardMap.remove(boardId);
 	}
+	
+	public void updateCategory(int catId, int boardId) {
+		Board board = getBoardById(boardId);
+		board.setCatId(catId);
+	}
+	
+	public List<Comment> getBoardsComments(int boardId) {
+		return commentService.getCommentListByBoardId(boardId);
+	}
+	
+	public List<Comment> getBoardsCommentsByPage(int boardId, int page) throws IllegalAccessException {
+		return commentService.getCommentListByBoardIdInPage(boardId, page);
+	}
+
 }
 
 

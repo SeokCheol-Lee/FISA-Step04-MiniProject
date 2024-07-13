@@ -10,7 +10,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Board {
-
+	private int boardId;
 	private int catId;
 	private int userId;
 	private String name;

@@ -12,7 +12,6 @@ import lombok.ToString;
 @Builder
 @ToString
 public class Comment {
-
 	private int userId;
 	private int boardId;
 	private String context;

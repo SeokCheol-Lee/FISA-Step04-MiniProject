@@ -1,40 +1,52 @@
 package view;
 
 import org.junit.Test;
-
+import controller.BoardController;
+import controller.CategoryServiceController;
 import model.entity.Category;
+import model.entity.Comment;
 import service.CategoryService;
-
+import service.CommentService;
 public class TestView {
 	
-//	@Test
-//	public void categoryTest() {
-//		CategoryService service = CategoryService.getInstance();
-//		
-//		service.createCategory("카테고리1");
-//		service.createCategory("카테고리2");
-//		service.createCategory("카테고리3");
-//		service.createCategory("카테고리4");
-//		service.createCategory("카테고리5");
-//		
-//		// getCategoryAll()
-//		System.out.println(service.getCategoryAll());
-//		
-//		// getCategoryId(int categoryId) 카테고리 아이디으로 찾기
-//		System.out.println(service.getCategoryById(1));
-//		
-//		// createCategory(String categoryName)
-//		//service.createCategory("카테고리5");
-//		
-//		// updateCategory(int categoryId, String categoryName) 카테고리 이름 변경
-//		service.updateCategory(4, "카테고리77");
-//		System.out.println(service.getCategoryAll());
-//		
-//		// deleteCategory(int categoryId) 카테고리 삭제
-//		service.deleteCategory(3);
-//		System.out.println(service.getCategoryAll());
-//		
-//	}
+	@Test
+	public void categoryTest() {
+		BoardController controller = BoardController.getInstance();
+		CategoryService categoryService = CategoryService.getInstance();
+		CategoryServiceController categoryServiceController = CategoryServiceController.getInstance();
+		CommentService commentService = CommentService.getInstance();
+		
+		
+		
+		
+		
+		categoryServiceController.createCategory("카테고리1");
+		categoryServiceController.createCategory("카테고리2");
+		categoryServiceController.createCategory("카테고리3");
+		categoryServiceController.createCategory("카테고리4");
+		categoryServiceController.createCategory("카테고리5");
+		
+		controller.createBoard(0, 1, 0, "a", "a", 0, null);
+		controller.createBoard(1, 0, 0, "a", "a", 0, null);
+		controller.createBoard(2, 0, 0, "a", "a", 0, null);
+		controller.createBoard(3, 0, 0, "a", "a", 0, null);
+		controller.createBoard(4, 0, 0, "a", "a", 0, null);
+		controller.createBoard(5, 0, 0, "a", "a", 0, null);
+		controller.createBoard(6, 0, 0, "a", "a", 0, null);
+		
+		commentService.createComment(2, 2, "근하하하하하");
+		commentService.createComment(2, 2, "근하하하하하");
+		commentService.createComment(2, 2, "근하하하하하");
+		
+		commentService.createComment(2, 2, "근하하하하하");
+		commentService.createComment(2, 2, "근하하하하하");
+		commentService.createComment(2, 2, "근하하하하하");
+		commentService.createComment(2, 2, "근하하하하하");
+		
+		controller.getBoardListByPage(1);
+		controller.getBoardDetail(2);
+		
+	}
 	
 	
 }

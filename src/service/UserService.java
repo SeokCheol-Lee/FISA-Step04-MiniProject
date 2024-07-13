@@ -9,6 +9,7 @@ import model.entity.User;
 public class UserService {
 
 	private static final UserService  userService = new UserService();
+	private static CommentService commentService = new CommentService();
 	private HashMap<Integer, User> userMap = new HashMap();
 	private int userIdCount= 0;
 	private UserService() {}
