@@ -23,11 +23,22 @@ public class BoardService {
 	}
 	
 	// 게시판 생성
-	public void createBoard(int boardId, int catId, int userId, String name, String context, int viewCount, String image) {
+	public void createBoard(int catId, int userId, String name, String context, String image) {
 		if (name == null || context == null) {
 			throw new IllegalArgumentException("제목과 내용을 입력하세요");
 		}
-		Board b = new Board(boardId, catId, userId, name, context, viewCount, image);
+
+
+		Board b = Board.builder()
+				.boardId(idCount)
+				.catId(catId)
+				.userId(userId)
+				.name(name)
+				.context(context)
+				.viewCount(0)
+				.image(image)
+				.build();
+
 		boardMap.put(idCount, b);
 		idCount ++;
 	}
@@ -38,7 +49,8 @@ public class BoardService {
 		HashMap<Integer, Board> allBoardMap = getBoardAll();
 		return getCalculatedPage(page, allBoardMap);
 	}
-	
+
+	// 페이지 계산용 private 메서드
 	private HashMap<Integer, Board> getCalculatedPage(int page, HashMap<Integer, Board> allBoardMap) {
         HashMap<Integer, Board> pageBoardMap = new HashMap<>();
 
@@ -75,7 +87,7 @@ public class BoardService {
     }
 	
 	
-	
+	// 제목으로 게시뭉 검색
 	public Board getBoardByTitle(String title) {
         Set<Integer> keys = instance.boardMap.keySet();
 
@@ -87,7 +99,8 @@ public class BoardService {
         }
         return null;
     }
-	
+
+	// id로 게시물 검색
 	public Board getBoardById(int id) {
 		if (instance.boardMap.get(id) != null) {
 			return instance.boardMap.get(id);
@@ -96,7 +109,8 @@ public class BoardService {
 			throw new IllegalArgumentException("id에 해당하는 board가 존재하지 않습니다.");
 		}
 	}
-	
+
+	// 게시물 제목 수정
 	public void updateBoardName(int boardId, String boardName) {
 		Board board = getBoardById(boardId);
 		if(board == null) {
@@ -105,7 +119,9 @@ public class BoardService {
 		board.setName(boardName);
 		boardMap.put(boardId,board);
 	}
-	
+
+
+	// 게시물 내용 수정
 	public void updateBoardContext(int boardId, String context) {
 		Board board = getBoardById(boardId);
 		if(board == null) {
@@ -114,7 +130,9 @@ public class BoardService {
 		board.setContext(context); 
 		boardMap.put(boardId,board);
 	}
-	
+
+
+	// 게시물 이미지 수정
 	public void updateImage(int boardId, String image) {
 		Board board = getBoardById(boardId);
 		if(board == null) {
@@ -123,14 +141,17 @@ public class BoardService {
 		board.setImage(image);
 		boardMap.put(boardId,board);
 	}
-	
+
+
+	// 조회수 가산용 private 메서드
 	public void addViewCount(Board board) {
 		int viewCount = board.getViewCount();
 		int boardId = board.getBoardId();
 		board.setViewCount(viewCount + 1);
 		boardMap.put(boardId, board);
 	}
-	
+
+	// 게시물 삭제
 	public void deleteBoard(int boardId) {
 		Board board = getBoardById(boardId);
 		if(board == null) {
@@ -139,16 +160,19 @@ public class BoardService {
 		board = null;
 		boardMap.remove(boardId);
 	}
-	
+
+	// 게시물 카테고리 수정
 	public void updateCategory(int catId, int boardId) {
 		Board board = getBoardById(boardId);
 		board.setCatId(catId);
 	}
-	
+
+	// 게시물 댓글 가져오기
 	public List<Comment> getBoardsComments(int boardId) {
 		return commentService.getCommentListByBoardId(boardId);
 	}
-	
+
+	// 페이지로 게시물 댓글 가져오기
 	public List<Comment> getBoardsCommentsByPage(int boardId, int page) throws IllegalAccessException {
 		return commentService.getCommentListByBoardIdInPage(boardId, page);
 	}
