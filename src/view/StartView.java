@@ -3,6 +3,8 @@ package view;
 import controller.BoardController;
 import controller.CategoryServiceController;
 import controller.UserController;
+import model.GradeType;
+import model.entity.User;
 import service.UserService;
 
 public class StartView {
@@ -10,6 +12,7 @@ public class StartView {
 	public static void main(String[] args) {
 		CategoryServiceController controller = CategoryServiceController.getInstance();
 		BoardController boardController = BoardController.getInstance();
+		UserController userController = UserController.getUserController();
 		
 		System.out.println("*** 01. 카테고리 생성 ***");
 		controller.createCategory("카테고리1");
@@ -50,6 +53,50 @@ public class StartView {
 		controller.getAllCategoryList();
 
 		// User 관련 View
+		System.out.println();
+		System.out.println("*** 06. 유저 생성 ***\n");
+		// 1번 유저 생성 . 
+		User user1 = null;
+		int userId_1 = 0;
+		User user2 = null; 
+		int userId_2 = 0;
+	
+		try {
+			userId_1 = userController.createUser("이승언", "이승언@naver.com",GradeType.NORMAL);
+			userId_2 = userController.createUser("이승준", "이승준@naver.com", GradeType.NORMAL);
+			user1 = userController.getUserInfo(userId_1);
+			user2 = userController.getUserInfo(userId_2);
+			System.out.println("userId : "+ userId_1 + " -> "+user1 );
+			System.out.println("userId : "+ userId_2 + " -> "+user2 +"\n");
+			
+			System.out.println("*** 07. 유저 이름 업데이트  *** \n");
+			user1 = userController.updateUserName(userId_1, "seungun lee ");
+			System.out.println(user1);
+			user2 = userController.updateUserName(userId_2, "seungjun lee ");
+			System.out.println(user2);
+			System.out.println("\n");
+			
+			System.out.println("*** 08. 유저 email 업데이트  *** \n");
+			user1 = userController.updateUserEmail(userId_1, "이승언@yahoo.com");
+			System.out.println(user1);
+			user2 = userController.updateUserEmail(userId_2, "이승준@gmail.com");
+			System.out.println(user2);
+			System.out.println("\n");
+			
+			System.out.println("*** 09. 유저 Grade 업데이트  ***\n");
+			
+			userController.updateUserGrade(userId_1,GradeType.VIP );
+			userController.updateUserGrade(userId_2,GradeType.VVIP );
+			System.out.println(user1);
+			System.out.println(user2);
+			System.out.println("\n");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		}
+		// 1번 유저 이름 변경 
+		// 1번 유저 이메일 변경 
+		
 
 		// Comment 관련 View
 
@@ -96,6 +143,33 @@ public class StartView {
 		// 삭제된 게시물 확인
 		System.out.println("*** 삭제된 게시물 확인 ***");
 		boardController.getBoardListByPage(1);
+		
+		
+		
+		System.out.println();
+		System.out.println("***  유저 삭제 확인  ***\n");
+		try {
+			System.out.println("삭제 할 유저 : "+ userController.getUserInfo(userId_1));
+			userController.deleteUser(userId_1);
+			System.out.println("***	삭제 유저 조회	***");
+			userController.getUserInfo(userId_1);
+	
+		} catch (Exception e) {
+			System.out.println(e.getMessage()+"\n");
+		}
+		
+		try {
+			System.out.println("삭제 할 유저 : "+ userController.getUserInfo(userId_2));
+			userController.deleteUser(userId_2);
+			System.out.println("***	삭제 유저 조회	***");
+			userController.getUserInfo(userId_2);
+	
+		} catch (Exception e) {
+			System.out.println(e.getMessage()+"\n");
+		}
+		
+		
+		
 	}
 
 }

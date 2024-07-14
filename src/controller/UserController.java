@@ -13,7 +13,7 @@ public class UserController {
 	private UserController() {
 	}
 
-	private static UserController getUserController() {
+	public static UserController getUserController() {
 		return userController;
 	}
 
@@ -23,12 +23,12 @@ public class UserController {
 	};
 
 	public int createUser(String name, String email, GradeType gradeType) throws Exception {
-		// 유저아이디를 반환합니다. 
+		// 유저 생성 후 유저아이디를 반환합니다. 
 		return userService.createUser(name, email, gradeType);
 	}
 
 	public User updateUserName(int userId, String name) throws Exception {
-		// 이름이 업데이트된 유저정보를 반환합니다. 
+		// 이름을 업데이트한 후 반영된 유저정보를 반환합니다. 
 		return userService.updateUserName(userId, name);
 
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import model.entity.Board;
 import model.entity.Category;
 import model.entity.Comment;
+import model.entity.User;
 
 public class EndView {
 
@@ -59,6 +60,19 @@ public class EndView {
 			
 		}
 		
+	}
+	
+	
+	// 유저 생성 후 정보 조회 
+	public static void userCreateView(User user) {
+		
+
+	}
+	
+	// 유저 정보 조회 
+	public static void userDetailView(User user) {
+		
+
 	}
 	
 }
