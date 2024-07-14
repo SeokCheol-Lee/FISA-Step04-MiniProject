@@ -49,12 +49,12 @@ public class EndView {
 		System.out.println("__________________________");	
 		System.out.println("조회수 : " + board.getViewCount());
 		System.out.println("__________________________");
-		System.out.println("__________________________");
-		System.out.println("댓글 목록");
+		System.out.println("---------댓글 목록---------");
+		System.out.println(comments);
 		for (int i=0; i<comments.size(); i++) {
 			Comment comment = comments.get(i); 
-			System.out.println("id :" + comment.getUserId());
-			System.out.println("id :" + comment.getContext());
+			System.out.println("user :" + comment.getUserId());
+			System.out.println("내용 :" + comment.getContext());
 			System.out.println("__________________________");
 			
 		}

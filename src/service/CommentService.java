@@ -46,7 +46,7 @@ public class CommentService {
 	}
 	
 	public List<Comment> getCommentListByBoardId(int boardId) {
-		return commentMap.values().stream().filter(c -> c.getUserId() == boardId)
+		return commentMap.values().stream().filter(c -> c.getBoardId() == boardId)
                 .collect(Collectors.toList());
 	}
 	
