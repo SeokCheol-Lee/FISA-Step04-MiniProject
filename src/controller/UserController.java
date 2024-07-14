@@ -13,7 +13,7 @@ public class UserController {
 	private UserController() {
 	}
 
-	private static UserController getUserController() {
+	public static UserController getUserController() {
 		return userController;
 	}
 

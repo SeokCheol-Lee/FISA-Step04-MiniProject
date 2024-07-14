@@ -25,6 +25,10 @@ public class CommentService {
 		commentMap.put(count++, comment);
 	}
 	
+	public Comment getAComment(int commentId){
+		return commentMap.get(commentId);
+	}
+	
 	public List<Comment> getCommentAll() {
 		return commentMap.values().stream().collect(Collectors.toList());
 	}

@@ -42,4 +42,8 @@ public class CommentController {
 	public void removeComment(int commentId) {
 		commentService.deleteComment(commentId);
 	}
+	
+	public Comment getAComment(int commendId){
+		return commentService.getAComment(commendId);
+	}
 }
