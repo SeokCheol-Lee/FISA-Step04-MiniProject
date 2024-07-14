@@ -63,16 +63,6 @@ public class EndView {
 	}
 	
 	
-	// 유저 생성 후 정보 조회 
-	public static void userCreateView(User user) {
-		
 
-	}
-	
-	// 유저 정보 조회 
-	public static void userDetailView(User user) {
-		
-
-	}
 	
 }
