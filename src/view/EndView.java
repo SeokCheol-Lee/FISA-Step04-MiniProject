@@ -38,7 +38,6 @@ public class EndView {
 	}
 	
 	public static void boardDetailView(Board board, List<Comment> comments, String categoryName) {
-		
 		System.out.println("작성자 : " + board.getUserId());
 		System.out.println("__________________________");
 		System.out.println("카테고리 : "+ categoryName);
